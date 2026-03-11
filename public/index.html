@@ -1,41 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Leitura com IA</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leitura Kids - Aprenda Brincando</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="app">
+  <div id="app">
+    <h1>📚 Leitura Kids</h1>
 
-<h1>📚 Treino de Leitura</h1>
+    <!-- Tela de Cadastro/Onboarding -->
+    <div id="setup" class="card">
+      <h2>Bem-vindo! 👋</h2>
+      <p>Vamos configurar seu perfil para começar a aventura.</p>
+      <input id="name" type="text" placeholder="Qual seu nome?">
+      <input id="age" type="number" placeholder="Quantos anos você tem?">
+      <button class="primary" onclick="startApp()">Começar Jornada</button>
+    </div>
 
-<div id="setup">
-<input id="name" placeholder="Nome">
-<input id="age" type="number" placeholder="Idade">
-<button onclick="startApp()">Começar</button>
-</div>
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden">
+      <div class="card">
+        <h2 id="welcome">Olá, aventureiro!</h2>
+        
+        <div class="stats-container">
+          <div class="stat-item">
+            <span class="icon">💎</span>
+            <span id="points-val">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="icon">🔥</span>
+            <span id="streak-val">0</span>
+          </div>
+        </div>
 
-<div id="dashboard" class="hidden">
-<h2 id="welcome"></h2>
-<p>⭐ Pontos: <span id="points">0</span></p>
-<p>🔥 Sequência: <span id="streak">0</span></p>
-<button onclick="startLesson()">Nova leitura</button>
-</div>
+        <button class="primary" onclick="startLesson()">Nova Lição</button>
+        <button class="outline" onclick="resetUser()">Trocar Usuário</button>
+      </div>
+    </div>
 
-<div id="lesson" class="hidden">
-<h2>Leia em voz alta</h2>
-<p id="text"></p>
-<button onclick="record()">🎤 Ler</button>
-<p id="result"></p>
-<button onclick="back()">Voltar</button>
-</div>
+    <!-- Tela de Lição -->
+    <div id="lesson" class="hidden">
+      <div class="card">
+        <div id="loader" class="loader hidden"></div>
+        <div id="lesson-content">
+          <h2>Leia em voz alta:</h2>
+          <div id="text-display">...</div>
+          
+          <div id="result-feedback" class="hidden"></div>
+          
+          <button id="record-btn" class="secondary" onclick="record()">🎤 Começar a Ler</button>
+          <button id="next-btn" class="primary hidden" onclick="startLesson()">Próxima Frase</button>
+          <button class="outline" onclick="back()">Sair da Lição</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
-
-<script src="app.js"></script>
-
+  <script src="app.js"></script>
 </body>
 </html>

@@ -22,17 +22,22 @@ const {age} = req.body
 const prompt = `
 Crie um pequeno texto de leitura para uma criança de ${age} anos.
 Máximo 4 frases.
-Vocabulário adequado à idade.
+Vocabulário adequado à idade, educativo e divertido.
 `
 
-const completion = await openai.chat.completions.create({
-model:"gpt-4.1-mini",
-messages:[{role:"user",content:prompt}]
-})
+try {
+  const completion = await openai.chat.completions.create({
+    model:"gpt-4o-mini",
+    messages:[{role:"user",content:prompt}]
+  })
 
-res.json({
-text:completion.choices[0].message.content
-})
+  res.json({
+    text:completion.choices[0].message.content
+  })
+} catch (error) {
+  console.error("OpenAI Error:", error)
+  res.status(500).json({ error: "Erro ao gerar texto" })
+}
 
 })
 
@@ -42,29 +47,29 @@ app.post("/evaluate-reading", async (req,res)=>{
 const {expected,spoken} = req.body
 
 const prompt = `
-Texto esperado:
-${expected}
+Aja como um professor de leitura paciente e incentivador para uma criança.
+Texto esperado: "${expected}"
+O que a criança falou: "${spoken}"
 
-Texto falado:
-${spoken}
-
-Avalie a leitura.
-
-Retorne:
-accuracy (0-100)
-fluency (0-10)
-pronunciation (0-10)
-feedback curto para criança
+Avalie a leitura comparando os dois textos.
+Seja positivo! Se houver muitos erros, foque em um ponto de melhoria.
+Retorne um feedback curto (máximo 2 frases) diretamente para a criança.
+Exemplo: "Muito bem! Você leu quase tudo certinho, só precisamos praticar um pouco mais a palavra 'casa'."
 `
 
-const completion = await openai.chat.completions.create({
-model:"gpt-4.1-mini",
-messages:[{role:"user",content:prompt}]
-})
+try {
+  const completion = await openai.chat.completions.create({
+    model:"gpt-4o-mini",
+    messages:[{role:"user",content:prompt}]
+  })
 
-res.json({
-analysis:completion.choices[0].message.content
-})
+  res.json({
+    analysis:completion.choices[0].message.content
+  })
+} catch (error) {
+  console.error("OpenAI Error:", error)
+  res.status(500).json({ error: "Erro ao avaliar leitura" })
+}
 
 })
 
