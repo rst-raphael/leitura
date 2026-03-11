@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Leitura com IA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+<h1>📚 Treino de Leitura</h1>
+
+<div id="setup">
+<input id="name" placeholder="Nome">
+<input id="age" type="number" placeholder="Idade">
+<button onclick="startApp()">Começar</button>
+</div>
+
+<div id="dashboard" class="hidden">
+<h2 id="welcome"></h2>
+<p>⭐ Pontos: <span id="points">0</span></p>
+<p>🔥 Sequência: <span id="streak">0</span></p>
+<button onclick="startLesson()">Nova leitura</button>
+</div>
+
+<div id="lesson" class="hidden">
+<h2>Leia em voz alta</h2>
+<p id="text"></p>
+<button onclick="record()">🎤 Ler</button>
+<p id="result"></p>
+<button onclick="back()">Voltar</button>
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
