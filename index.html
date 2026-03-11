@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leitura Kids - Aprenda Brincando</title>
+  <title>Leitura Kids - IA Grátis</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,42 +11,36 @@
   <div id="app">
     <h1>📚 Leitura Kids</h1>
 
-    <!-- Tela de Configuração de Chave (Opcional, mas útil para o usuário colocar a chave dele se quiser) -->
+    <!-- Tela de Configuração da Chave Gemini -->
     <div id="api-config" class="hidden">
       <div class="card">
-        <h2>Configuração ⚙️</h2>
-        <p>Insira sua chave da OpenAI para começar:</p>
-        <input id="api-key-input" type="password" placeholder="sk-...">
-        <button class="primary" onclick="saveApiKey()">Salvar Chave</button>
+        <h2>Configuração de IA 🤖</h2>
+        <p>Para usar a IA grátis, coloque sua chave do Google Gemini:</p>
+        <input id="api-key-input" type="password" placeholder="Cole sua chave aqui...">
+        <p><small><a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--blue);">Clique aqui para pegar sua chave grátis</a></small></p>
+        <button class="primary" onclick="saveApiKey()">Salvar e Começar</button>
       </div>
     </div>
 
-    <!-- Tela de Cadastro/Onboarding -->
+    <!-- Tela de Cadastro -->
     <div id="setup" class="card hidden">
       <h2>Bem-vindo! 👋</h2>
-      <p>Vamos configurar seu perfil para começar a aventura.</p>
-      <input id="name" type="text" placeholder="Qual seu nome?">
-      <input id="age" type="number" placeholder="Quantos anos você tem?">
+      <p>Qual o seu nome e idade?</p>
+      <input id="name" type="text" placeholder="Nome">
+      <input id="age" type="number" placeholder="Idade">
       <button class="primary" onclick="startApp()">Começar Jornada</button>
     </div>
 
     <!-- Dashboard -->
     <div id="dashboard" class="hidden">
       <div class="card">
-        <h2 id="welcome">Olá, aventureiro!</h2>
-        
+        <h2 id="welcome">Olá!</h2>
         <div class="stats-container">
-          <div class="stat-item">
-            <span class="icon">💎</span>
-            <span id="points-val">0</span>
-          </div>
-          <div class="stat-item">
-            <span class="icon">🔥</span>
-            <span id="streak-val">0</span>
-          </div>
+          <div class="stat-item"><span class="icon">💎</span> <span id="points-val">0</span></div>
+          <div class="stat-item"><span class="icon">🔥</span> <span id="streak-val">0</span></div>
         </div>
-
-        <button class="primary" onclick="startLesson()">Nova Lição</button>
+        <button class="primary" onclick="startLesson()">Nova Lição com IA</button>
+        <button class="outline" onclick="changeApiKey()">Trocar Chave IA</button>
         <button class="outline" onclick="resetUser()">Trocar Usuário</button>
       </div>
     </div>
@@ -58,12 +52,10 @@
         <div id="lesson-content">
           <h2>Leia em voz alta:</h2>
           <div id="text-display">...</div>
-          
           <div id="result-feedback" class="hidden"></div>
-          
           <button id="record-btn" class="secondary" onclick="record()">🎤 Começar a Ler</button>
           <button id="next-btn" class="primary hidden" onclick="startLesson()">Próxima Frase</button>
-          <button class="outline" onclick="back()">Sair da Lição</button>
+          <button class="outline" onclick="back()">Sair</button>
         </div>
       </div>
     </div>
