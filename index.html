@@ -11,8 +11,18 @@
   <div id="app">
     <h1>📚 Leitura Kids</h1>
 
+    <!-- Tela de Configuração de Chave (Opcional, mas útil para o usuário colocar a chave dele se quiser) -->
+    <div id="api-config" class="hidden">
+      <div class="card">
+        <h2>Configuração ⚙️</h2>
+        <p>Insira sua chave da OpenAI para começar:</p>
+        <input id="api-key-input" type="password" placeholder="sk-...">
+        <button class="primary" onclick="saveApiKey()">Salvar Chave</button>
+      </div>
+    </div>
+
     <!-- Tela de Cadastro/Onboarding -->
-    <div id="setup" class="card">
+    <div id="setup" class="card hidden">
       <h2>Bem-vindo! 👋</h2>
       <p>Vamos configurar seu perfil para começar a aventura.</p>
       <input id="name" type="text" placeholder="Qual seu nome?">

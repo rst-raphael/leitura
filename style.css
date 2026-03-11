@@ -113,7 +113,7 @@ button.outline:active {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 #dashboard {
